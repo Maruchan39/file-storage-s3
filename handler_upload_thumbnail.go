@@ -99,6 +99,9 @@ func (cfg *apiConfig) handlerUploadThumbnail(w http.ResponseWriter, r *http.Requ
 	metadata.ThumbnailURL = &thumbnailUrl
 
 	err = cfg.db.UpdateVideo(metadata)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	respondWithJSON(w, http.StatusOK, metadata)
 }
